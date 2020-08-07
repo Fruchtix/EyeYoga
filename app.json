@@ -2,7 +2,7 @@
   "expo": {
     "name": "EyeYoga",
     "slug": "EyeYoga",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -36,7 +36,8 @@
         "image": "./assets/splash.png",
         "resizeMode": "contain",
         "backgroundColor": "#fff"
-      }
+      },
+      "versionCode": 13
     }
   }
 }
