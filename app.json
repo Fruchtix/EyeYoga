@@ -38,6 +38,7 @@
         "backgroundColor": "#fff"
       },
       "versionCode": 13
-    }
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
   }
 }
