@@ -185,7 +185,7 @@ export default class CourseScreen extends Component {
 const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
-        backgroundColor: "#fff"
+        backgroundColor: "#fff",
     },
     container: {
         marginHorizontal: 20,
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
     },
     courseDesc: {
-        paddingTop: Platform.OS === "android" ? 25 : 40,
+        paddingTop: Platform.OS === "android" ? 15 : 40,
         backgroundColor: "#EBE7E4",
     },
     specifications: {

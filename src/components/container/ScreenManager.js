@@ -27,7 +27,7 @@ class ScreenManager extends React.Component {
           name: '',
           courses: [],
           currentCourse: "",
-          premium: true
+          premium: null
       };
 
       //To supress the "Setting a Timer" warning
@@ -41,6 +41,7 @@ class ScreenManager extends React.Component {
     }
 
     componentWillUnmount = async() => {
+      console.log("unmount")
       await InAppPurchases.disconnectAsync();
     }
   
@@ -58,11 +59,13 @@ class ScreenManager extends React.Component {
           firebase.firestore().collection("users").doc(user.uid).get()
                 .then(async(doc) => {
                     if (doc.exists) {
-                        await Promise.all([this.getCurrentCourse(), this.getCurretExecise()/*, this.connectToPayment()*/])
-                        // this.setPurchaseListener()
+                        await Promise.all([this.getCurrentCourse(), this.getCurretExecise(), this.connectToPayment()])
+                        this.setPurchaseListener()
                         this.setState({name: doc.data().first})
                         this.setState({loggedInStatus: 'loggedIn', emailVerified: user.emailVerified})
-                    } else {
+                        console.log("logged in")
+                      } else {
+                        console.log("logged out")
                         this.setState({loggedInStatus: 'loggedOut'})
                     }
                 })
@@ -74,8 +77,11 @@ class ScreenManager extends React.Component {
     }
 
     connectToPayment = async() => {
+      console.log("connect")
       return new Promise(async(resolve, reject) => {
-          const history = await InAppPurchases.connectAsync()
+        console.log("connect start")
+        const history = await InAppPurchases.connectAsync()
+        console.log("connect end")
           if (history.responseCode === InAppPurchases.IAPResponseCode.OK) {
             //If User bought something get current date and check if still valid
             let monthly
