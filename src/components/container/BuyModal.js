@@ -150,7 +150,11 @@ export default class BuyModal extends Component {
                                     </TouchableOpacity>
 
                                     <TouchableOpacity onPress={() => {this.props.navigation.navigate("LawWebsite", {type: "agb"}), this.props.onClose()}}>
-                                        <Text style={styles.agb}>AGB</Text>
+                                        <Text style={[styles.agb, {marginRight: 15}]}>AGB</Text>
+                                    </TouchableOpacity>
+
+                                    <TouchableOpacity>
+                                        <Text style={styles.agb}>Restore</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>

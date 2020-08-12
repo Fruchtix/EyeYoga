@@ -21,7 +21,6 @@ export default class RegisterAccount extends Component {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             // .then(() => this.sendVerificationEmail())
             .then(() => this.updateUserProfile(firstName,eyeStatus))
-            .then(() => this.setState({showActivityIndicator: false}))
             .catch((error) => {
             // Handle Errors here.
             var errorMessage = error.message;
@@ -114,7 +113,7 @@ export default class RegisterAccount extends Component {
                     <View style={styles.submitBtnWrapper}>
                         <TouchableOpacity 
                             style={[styles.submitBtn, !(validate("email", this.state.email)) ? {backgroundColor: "#ddd"} : {backgroundColor: "#5A6174"}]}
-                            disabled={!(validate("email", this.state.email))}
+                            disabled={!(validate("email", this.state.email)) || this.state.showActivityIndicator}
                             onPress={() => {this.createUser(this.state.email, password, firstName,eyeStatus), Keyboard.dismiss()}}>
                                 {this.state.showActivityIndicator ? <ActivityIndicator color="#333" /> : null}
                                 <Text style={styles.btnText}> Registrierung abschließen</Text>

@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-navigation';
 import { StyleSheet, Platform, YellowBox } from 'react-native';
 import MainNavigator from './navigators/MainNavigator'
 import AuthNavigator from './navigators/AuthNavigator'
-import SplashScreen from '../screens/SplashScreen'
+// import SplashScreen from '../screens/SplashScreen'
 import VerifyEmailScreen from '../screens/registration/VerifyEmailScreen'
 import * as Font from 'expo-font';
 import _ from 'lodash';
@@ -11,6 +11,7 @@ import * as firebase from 'firebase'
 import 'firebase/firestore'
 import 'firebase/functions'
 import * as InAppPurchases from 'expo-in-app-purchases'
+import * as SplashScreen from 'expo-splash-screen';
 
 class ScreenManager extends React.Component {
     constructor(props) {
@@ -59,12 +60,13 @@ class ScreenManager extends React.Component {
           firebase.firestore().collection("users").doc(user.uid).get()
                 .then(async(doc) => {
                     if (doc.exists) {
-                        await Promise.all([this.getCurrentCourse(), this.getCurretExecise(), this.connectToPayment()])
-                        this.setPurchaseListener()
-                        this.setState({name: doc.data().first})
-                        this.setState({loggedInStatus: 'loggedIn', emailVerified: user.emailVerified})
-                        console.log("logged in")
-                      } else {
+                      console.log("logged in")
+                      await Promise.all([this.getCurrentCourse(), this.getCurretExecise(), this.connectToPayment()])
+                      this.setPurchaseListener()
+                      this.setState({name: doc.data().first})
+                      this.setState({loggedInStatus: 'loggedIn', emailVerified: user.emailVerified})
+                      console.log("logged in done")
+                    } else {
                         console.log("logged out")
                         this.setState({loggedInStatus: 'loggedOut'})
                     }
@@ -192,26 +194,27 @@ class ScreenManager extends React.Component {
   
     render() {
       if (this.state.loggedInStatus === 'loggedIn' && this.state.fontLoaded && this.state.premium !== null) {
-        if(/*this.state.emailVerified*/true) {
-          return (
-              <MainNavigator screenProps={{name: this.state.name, premium: this.state.premium,courses: this.state.courses, currentCourse: this.state.currentCourse, reload: () => {this.getCurretExecise(); this.getCurrentCourse()}}} />
-          )
-        } else {
-          return(
-            <SafeAreaView style={styles.safeArea}>
-              <VerifyEmailScreen screenProps={{emailVerified: () => this.setState({emailVerified: true})}} />
-            </SafeAreaView>
+        setTimeout(async () => {
+          await SplashScreen.hideAsync();
+        }, 300);
+        
+        return (
+          <MainNavigator screenProps={{name: this.state.name, premium: this.state.premium,courses: this.state.courses, currentCourse: this.state.currentCourse, reload: () => {this.getCurretExecise(); this.getCurrentCourse()}}} />
           )
         }
-      }
       else if (this.state.loggedInStatus === 'loggedOut' && this.state.fontLoaded) {
+        setTimeout(async () => {
+          await SplashScreen.hideAsync();
+        }, 300);
+
         return (
           <SafeAreaView style={styles.safeArea}>
             <AuthNavigator />
           </SafeAreaView>
         )
       }
-      return <SplashScreen />
+      // return <SplashScreen />
+      return null
     }
 }
 

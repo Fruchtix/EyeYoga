@@ -23,6 +23,6 @@ const styles = StyleSheet.create({
         width: "100%",
         flexDirection: 'row',
         paddingHorizontal: 10,
-        paddingTop: 10,
+        paddingTop: 0,
     },
 })
