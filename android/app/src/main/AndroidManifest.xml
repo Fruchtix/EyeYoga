@@ -1,23 +1,38 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.fruchtiapps.eyeyoga">
-  <uses-permission android:name="android.permission.INTERNET"/>
-  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-  <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE"/>
-  <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-  <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
-  <uses-permission android:name="android.permission.VIBRATE"/>
-  <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
-  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-  <uses-permission android:name="android.permission.CAMERA"/>
-  <uses-permission android:name="android.permission.READ_CONTACTS"/>
-  <uses-permission android:name="android.permission.READ_CALENDAR"/>
-  <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
-  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-  <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-  <uses-permission android:name="android.permission.WAKE_LOCK"/>
-  <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.fruchtiapps.eyeyoga" xmlns:tools="http://schemas.android.com/tools">
+  <permission
+    android:name="com.fruchtiapps.eyeyoga.permission.C2D_MESSAGE"
+    android:protectionLevel="signature"/>
+
+  <!-- These are required permissions to make the app run -->
+  <uses-permission android:name="com.fruchtiapps.eyeyoga.permission.C2D_MESSAGE" />
+  <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+  <!-- ADD PERMISSIONS HERE -->
+  <!-- BEGIN OPTIONAL PERMISSIONS -->
+  <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" tools:node="remove" />
+  <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" tools:node="remove" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" tools:node="remove" />
+  <uses-permission android:name="android.permission.USE_FINGERPRINT" tools:node="remove" />
+  <uses-permission android:name="android.permission.VIBRATE" />
+  <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" tools:node="remove"/>
+  <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+  <!-- These require runtime permissions on M -->
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" tools:node="remove" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" tools:node="remove" />
+  <uses-permission android:name="android.permission.CAMERA" tools:node="remove" />
+  <uses-permission android:name="android.permission.READ_CONTACTS" tools:node="remove" />
+  <uses-permission android:name="android.permission.READ_CALENDAR" tools:node="remove" />
+  <uses-permission android:name="android.permission.WRITE_CALENDAR" tools:node="remove" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" tools:node="remove" />
+  <uses-permission android:name="android.permission.RECORD_AUDIO" tools:node="remove" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:node="remove" />
+  <uses-permission android:name="android.permission.WRITE_SETTINGS" tools:node="remove" />
+  <!-- END OPTIONAL PERMISSIONS -->
   <application android:name=".MainApplication" android:label="@string/app_name" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" android:allowBackup="false" android:theme="@style/AppTheme">
     <meta-data android:name="expo.modules.updates.EXPO_UPDATE_URL" android:value="https://exp.host/@fruchtiapps/EyeYoga"/>
     <meta-data android:name="expo.modules.updates.EXPO_SDK_VERSION" android:value="38.0.0"/>

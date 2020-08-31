@@ -30,7 +30,7 @@
     },
     "android": {
       "package": "com.fruchtiapps.eyeyoga",
-      "permissions": [],
+      "permissions": [""],
       "icon": "./assets/icon.png",
       "splash": {
         "image": "./assets/splash.png",
